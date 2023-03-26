@@ -1,0 +1,28 @@
+{
+    "name": "submodule",
+    "version": "0.0.1",
+    "description": "A jsdoc plugin for nested submodules",
+    "main": "index.js",
+    "scripts": {
+        "test": "jest"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/blameitonyourisp/submodule.git"
+    },
+    "keywords": [
+        "jsdoc",
+        "plugin",
+        "nested",
+        "submodule"
+    ],
+    "author": "James Reid",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/blameitonyourisp/submodule/issues"
+    },
+    "homepage": "https://github.com/blameitonyourisp/submodule#readme",
+    "dependencies": {
+        "jsdoc": "^4.0.2"
+    }
+}
