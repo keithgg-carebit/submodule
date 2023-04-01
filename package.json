@@ -1,10 +1,16 @@
 {
-    "name": "submodule",
+    "name": "@13ms/submodule",
     "version": "0.0.1",
     "description": "A jsdoc plugin for nested submodules",
-    "main": "index.js",
+    "type": "module",
+    "main": "dist/bundle.min.cjs",
     "scripts": {
-        "test": "jest"
+        "test": "jest",
+        "build": "rollup --config ./config/rollup.config.js",
+        "docs": "jsdoc -c ./config/jsdoc.config.json",
+        "docs-sample": "jsdoc -c ./config/jsdoc-sample.config.json",
+        "serve-docs": "npm run docs && http-server ./jsdoc",
+        "serve-docs-sample": "npm run docs-sample && http-server ./jsdoc-sample"
     },
     "repository": {
         "type": "git",
@@ -24,5 +30,14 @@
     "homepage": "https://github.com/blameitonyourisp/submodule#readme",
     "dependencies": {
         "jsdoc": "^4.0.2"
+    },
+    "devDependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.21.2",
+        "@jest/globals": "^29.5.0",
+        "@rollup/plugin-terser": "^0.4.0",
+        "docdash": "^2.0.1",
+        "http-server": "^14.1.1",
+        "jest": "^29.5.0",
+        "rollup": "^3.20.2"
     }
 }
