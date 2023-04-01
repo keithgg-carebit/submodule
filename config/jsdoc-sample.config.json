@@ -1,0 +1,39 @@
+{
+    "opts": {
+        "destination": "./jsdoc-sample/",
+        "private": true,
+        "recurse": true,
+        "sort": true,
+        "scripts": []
+    },
+    "plugins": [ 
+        "plugins/markdown",
+        "."
+    ],
+    "markdown": {
+        "hardwrap": true
+    },
+    "submodule": {
+        "roots": {
+            "A": "sample/includeA/moduleA",
+            "B": "sample/includeA/moduleB",
+            "C": "sample/includeB/moduleC",
+            "A/spec": "sample/includeA/moduleA/spec",
+            "B/spec": "sample/includeA/moduleB/submoduleA/spec"
+        }
+    },
+    "recurseDepth": 10,
+    "source": {
+        "include": ["sample/includeA", "sample/includeB"],
+        "includePattern": ".+\\.js(doc|x)?$"
+    },
+    "sourceType": "module",
+    "tags": {
+        "allowUnknownTags": true,
+        "dictionaries": ["jsdoc", "closure"]
+    },
+    "templates": {
+        "cleverLinks": false,
+        "monospaceLinks": false
+    }
+}
