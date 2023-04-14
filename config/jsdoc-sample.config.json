@@ -3,6 +3,7 @@
         "destination": "./jsdoc-sample/",
         "private": true,
         "recurse": true,
+        "readme": "sample/README.md",
         "sort": true,
         "scripts": []
     },
