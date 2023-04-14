@@ -15,6 +15,9 @@
 
 // @ts-check
 
+// @imports-package
+// @ts-expect-error - jsdoc is an external runtime dependency
+import env from "jsdoc/env"
 // @imports-module
 import { onTagged } from "./onTagged.js"
 
@@ -31,7 +34,10 @@ const defineTags = dictionary => {
         mustNotHaveValue: false
     }
     // define named tag with, onTagged function imported
-    dictionary.defineTag("submodule", { ...options, onTagged })
+    dictionary.defineTag("submodule", { 
+        ...options, 
+        onTagged: onTagged.bind(env) 
+    })
 }
 
 // @exports

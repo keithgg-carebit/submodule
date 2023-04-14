@@ -18,9 +18,6 @@
 
 // @imports-node
 import { relative } from "path"
-// @imports-package
-// @ts-expect-error - jsdoc is an external runtime dependency
-import env from "jsdoc/env"
 
 // @body
 /**
@@ -29,11 +26,11 @@ import env from "jsdoc/env"
  * 
  * @typedef EnvFragment
  * @property {string} pwd - directory of package.json/npm run <script> command
- * @property {object} conf - 
+ * @property {object} conf - ref to jsdoc config file used in cli command
  * @property {object} conf.submodule - submodule plugin-specific config object
  * @property {Object.<string, string>} conf.submodule.roots - custom defined 
  *      module names
- * @property {string[]} conf.submodule.nullBases - ignored filenames
+ * @property {string[]} conf.submodule.ignore - ignored filenames
  * @property {{include: string[]}} conf.source - jsdoc source value
  */
 
@@ -48,12 +45,15 @@ import env from "jsdoc/env"
  *      the parsed data of the tag which was found
  * @returns {void}
  */
-const onTagged = (doclet, tag) => { 
-    /** @type {EnvFragment} */
-    const { pwd, conf: { submodule, source } } = env // destructure jsdoc config
-    
-    const moduleTuples = Object.entries(submodule.roots || {}).sort((a, b) => {
-        return b[1].split("/").length - a[1].split("/").length
+function onTagged(doclet, tag) { 
+    /** 
+     * Destructured jsdoc config fragment 
+     * @type {EnvFragment} 
+     */
+    const { pwd, conf: { submodule: { roots, ignore }, source } } = this
+
+    const moduleTuples = Object.entries(roots || {}).sort((rootA, rootB) => {
+        return rootB[1].split("/").length - rootA[1].split("/").length
     })
     for (const root of source.include) { moduleTuples.push(["", root]) }
 
@@ -61,14 +61,15 @@ const onTagged = (doclet, tag) => {
     for (const tuple of moduleTuples) {
         const [rootName, rootPath] = tuple
         if (path.includes(rootPath)) {
-            path = path.replace(rootPath, rootName)
+            path = rootName != "" ? path.replace(rootPath, rootName)
+                : path.replace(new RegExp(`${rootPath}\/?`), rootName)
             break
         }
     }
     
     const basename = doclet.meta.filename.match(/^.+(?=\..+$)/)[0] 
     const name = tag?.value?.name || (path === "" ? basename
-        : (submodule?.nullBases || ["index"]).includes(basename) ? path
+        : (ignore || ["index"]).includes(basename) ? path
         : `${path}/${basename}`)
     Object.assign(doclet, { kind: "module", name })
 }
