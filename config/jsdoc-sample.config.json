@@ -1,11 +1,24 @@
 {
+    "docdash": {
+        "search": true,
+        "typedefs": true,
+        "collapse": true,
+        "sort": true,
+        "sectionOrder": [
+            "Tutorials",
+            "Classes",
+            "Modules",
+            "Externals"
+        ],
+        "scripts": [ "../dist/docdash.min.js" ]
+    },
     "opts": {
         "destination": "./jsdoc-sample/",
         "private": true,
         "recurse": true,
         "readme": "sample/README.md",
-        "sort": true,
-        "scripts": []
+        "template": "node_modules/docdash",
+        "sort": true
     },
     "plugins": [ 
         "plugins/markdown",

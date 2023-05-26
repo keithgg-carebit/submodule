@@ -3,13 +3,21 @@
         "search": true,
         "typedefs": true,
         "collapse": true,
-        "sort": true
+        "sort": true,
+        "sectionOrder": [
+            "Tutorials",
+            "Classes",
+            "Modules",
+            "Externals"
+        ]
     },
     "opts": {
         "destination": "./jsdoc/",
         "private": true,
         "recurse": true,
+        "readme": "./README.md",
         "template": "node_modules/docdash",
+        "tutorials": "./docs",
         "sort": true
     },
     "plugins": [ 
