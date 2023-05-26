@@ -46,7 +46,7 @@ describe("onTagged", () => {
      * @param {T} doclet - existing doclet fragment usually initialized with a 
      *      fragment of the doclet.meta object created by jsdoc
      * @param {string} name - expected path/name of created module
-     * @returns {T & {kind: string, name: string}}
+     * @returns {T|{kind: string, name: string}}
      */
     const getDoclet = (doclet, name) => {
         return { ...doclet, kind: "module", name }
