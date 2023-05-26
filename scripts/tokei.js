@@ -40,7 +40,8 @@ exec("tokei --output json", (error, stdout, stderr) => {
     const data = {
         schemaVersion: 1,
         label: "lines written",
-        message: lineCount.toString(),
+        message: lineCount < 1000 ? lineCount.toString() 
+            : `${(lineCount / 1000).toFixed(1)}k`, // round if over 1k lines
         style: "for-the-badge",
         labelColor: "181b1a", // left color
         color: "779966" // right color
