@@ -35,7 +35,10 @@ import { relative } from "path"
  */
 
 /**
- * Insert function description
+ * Modifies doclet to create a module tagged file with a name which follows the 
+ * convention of naming a module according to relative path between the module
+ * file(s) and the root of the src directory for which jsdoc is creating 
+ * documentation output
  * 
  * @summary Modify doclet to create module tagged file
  * @param {object} doclet - instance of doclet object created by jsdoc which
@@ -43,20 +46,29 @@ import { relative } from "path"
  *      parsed
  * @param {object} tag - instance of tag object created by jsdoc which contains
  *      the parsed data of the tag which was found
- * @returns {void}
+ * @returns {void} function directly modifies the passed jsdoc doclet and its
+ *      return value is not observed
  */
 function onTagged(doclet, tag) { 
     /** 
-     * Destructured jsdoc config fragment 
+     * Destructured jsdoc config fragment - onTagged callback in wrapping plugin
+     * config object binds this function with the runtime environment variables
+     * from jsdoc
      * @type {EnvFragment} 
      */
     const { pwd, conf: { submodule: { roots, ignore }, source } } = this
 
+    // extract custom module root names from config and order them according to 
+    // path length of the target directory in descending order, then add root
+    // path(s) to tuples with no assigned custom prefix path
     const moduleTuples = Object.entries(roots || {}).sort((rootA, rootB) => {
         return rootB[1].split("/").length - rootA[1].split("/").length
     })
     for (const root of source.include) { moduleTuples.push(["", root]) }
 
+    // calculate nested path of doclet by iterating over module tuples, breaking 
+    // if target directory includes relative doclet path, favouring longest 
+    // paths first due to ordering above
     let path = relative(pwd, doclet.meta.path)
     for (const tuple of moduleTuples) {
         const [rootName, rootPath] = tuple
@@ -67,6 +79,9 @@ function onTagged(doclet, tag) {
         }
     }
     
+    // generate the complete slash-separated pathname for the nested module 
+    // and convert the passed doclet into a jsdoc module doclet with the
+    // calculated name
     const basename = doclet.meta.filename.match(/^.+(?=\..+$)/)[0] 
     const name = tag?.value?.name || (path === "" ? basename
         : (ignore || ["index"]).includes(basename) ? path

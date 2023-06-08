@@ -23,6 +23,7 @@ import postcss from "rollup-plugin-postcss"
 // @body
 // declare rollup config object
 const config = [
+    // rollup config object for jsdoc plugin
     {
         input: "src/plugin/index.js",
         output: [
@@ -37,6 +38,7 @@ const config = [
             terser({ maxWorkers: 6 })
         ]
     },
+    // rollup config object for docdash template pluign
     {
         input: "src/nested/scripts/docdash/index.js",
         output: [
