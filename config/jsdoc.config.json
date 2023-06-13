@@ -7,8 +7,13 @@
         "sectionOrder": [
             "Tutorials",
             "Classes",
+            "Namespaces",
             "Modules",
-            "Externals"
+            "Externals",
+            "Events",
+            "Mixins",
+            "Interfaces",
+            "Global"
         ]
     },
     "opts": {

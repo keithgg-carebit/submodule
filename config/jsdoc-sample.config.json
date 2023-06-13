@@ -7,10 +7,15 @@
         "sectionOrder": [
             "Tutorials",
             "Classes",
+            "Namespaces",
             "Modules",
-            "Externals"
+            "Externals",
+            "Events",
+            "Mixins",
+            "Interfaces",
+            "Global"
         ],
-        "scripts": [ "../dist/docdash.min.js" ]
+        "scripts": [ "docdash.min.js" ]
     },
     "opts": {
         "destination": "./jsdoc-sample/",
@@ -30,10 +35,8 @@
     "submodule": {
         "roots": {
             "A": "sample/includeA/moduleA",
-            "B": "sample/includeA/moduleB",
-            "C": "sample/includeB/moduleC",
-            "A/spec": "sample/includeA/moduleA/spec",
-            "B/spec": "sample/includeA/moduleB/submoduleA/spec"
+            "B": "sample/includeB/moduleB",
+            "A/spec": "sample/includeA/spec"
         }
     },
     "recurseDepth": 10,
@@ -48,6 +51,14 @@
     },
     "templates": {
         "cleverLinks": false,
-        "monospaceLinks": false
+        "monospaceLinks": false,
+        "default": {
+            "staticFiles": {
+                "include": [
+                    "dist/docdash.min.js",
+                    "dist/docdash.min.js.map"
+                ]
+            }
+        }
     }
 }

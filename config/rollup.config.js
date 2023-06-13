@@ -42,7 +42,7 @@ const config = [
     {
         input: "src/nested/scripts/docdash/index.js",
         output: [
-            { file: "dist/docdash.min.js", format: "iife" }
+            { file: "dist/docdash.min.js", format: "iife", sourcemap: true }
         ],
         plugins: [
             // @ts-expect-error
