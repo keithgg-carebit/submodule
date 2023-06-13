@@ -1,5 +1,5 @@
 /**
- * Custom module description path includeA/moduleA/spec/featureA.js
+ * Spec feature file - path spec/specFeature.js
  * 
  * @submodule
  */
@@ -11,4 +11,4 @@
  * @private
  * @inner
  */
-const genericFeature = () => {}
+const specFeature = () => {}

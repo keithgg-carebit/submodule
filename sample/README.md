@@ -7,10 +7,8 @@ Please refer to the following json fragment of the sample jsdoc config to see th
     "submodule": {
         "roots": {
             "A": "sample/includeA/moduleA",
-            "B": "sample/includeA/moduleB",
-            "C": "sample/includeB/moduleC",
-            "A/spec": "sample/includeA/moduleA/spec",
-            "B/spec": "sample/includeA/moduleB/submoduleA/spec"
+            "B": "sample/includeB/moduleB",
+            "A/spec": "sample/includeA/spec"
         }
     }
 }

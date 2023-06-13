@@ -1,14 +1,14 @@
 /**
- * Custom module description path includeA/moduleA/index.js
+ * Module index file - path module/index.js
  * 
  * @submodule
  */
 
 /**
- * Generic private inner function in module
+ * Index file module feature function with private access and inner scope
  * 
  * @function
  * @private
  * @inner
  */
-const genericFeature = () => {}
+const moduleIndexFeature = () => {}
