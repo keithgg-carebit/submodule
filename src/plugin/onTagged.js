@@ -10,7 +10,7 @@
 
 /**
  * @file Defines onTagged function for shorthand nested module tagged files
- * @module tag
+ * @module plugin
  * @author James Reid
  */
 
@@ -35,10 +35,10 @@ import { relative } from "path"
  */
 
 /**
- * Modifies doclet to create a module tagged file with a name which follows the 
- * convention of naming a module according to relative path between the module
- * file(s) and the root of the src directory for which jsdoc is creating 
- * documentation output
+ * Modify doclet to create a module tagged file with a name which follows the 
+ * convention of naming a module according to relative dirname between the 
+ * module file(s) and the root of the src directory for which jsdoc is creating 
+ * documentation output.
  * 
  * @summary Modify doclet to create module tagged file
  * @param {object} doclet - instance of doclet object created by jsdoc which
@@ -50,6 +50,10 @@ import { relative } from "path"
  *      return value is not observed
  */
 function onTagged(doclet, tag) { 
+    // set submodule configuration to an empty object if no configuration is 
+    // supplied through jsdoc json config
+    this.conf.submodule ??= {}
+
     /** 
      * Destructured jsdoc config fragment - onTagged callback in wrapping plugin
      * config object binds this function with the runtime environment variables
@@ -59,33 +63,34 @@ function onTagged(doclet, tag) {
     const { pwd, conf: { submodule: { roots, ignore }, source } } = this
 
     // extract custom module root names from config and order them according to 
-    // path length of the target directory in descending order, then add root
-    // path(s) to tuples with no assigned custom prefix path
+    // dirname length of the target directory in descending order, then add root
+    // dirname(s) to tuples with no assigned custom prefix dirname
     const moduleTuples = Object.entries(roots || {}).sort((rootA, rootB) => {
         return rootB[1].split("/").length - rootA[1].split("/").length
     })
     for (const root of source.include) { moduleTuples.push(["", root]) }
 
-    // calculate nested path of doclet by iterating over module tuples, breaking 
-    // if target directory includes relative doclet path, favouring longest 
-    // paths first due to ordering above
-    let path = relative(pwd, doclet.meta.path)
+    // calculate minimum relative nested dirname of doclet by iterating over 
+    // module tuples, breaking if target dirname includes dirname of custom root
+    // module
+    let dirname = relative(pwd, doclet.meta.path)
     for (const tuple of moduleTuples) {
-        const [rootName, rootPath] = tuple
-        if (path.includes(rootPath)) {
-            path = rootName != "" ? path.replace(rootPath, rootName)
-                : path.replace(new RegExp(`${rootPath}\/?`), rootName)
+        const [rootName, rootDir] = tuple
+        if (dirname.includes(rootDir)) {
+            dirname = rootName != "" ? dirname.replace(rootDir, rootName)
+                : dirname.replace(new RegExp(`${rootDir}\/?`), rootName)
             break
         }
     }
     
-    // generate the complete slash-separated pathname for the nested module 
+    // generate the complete slash-separated dirname for the nested module 
     // and convert the passed doclet into a jsdoc module doclet with the
     // calculated name
     const basename = doclet.meta.filename.match(/^.+(?=\..+$)/)[0] 
-    const name = tag?.value?.name || (path === "" ? basename
-        : (ignore || ["index"]).includes(basename) ? path
-        : `${path}/${basename}`)
+    const name = tag?.value?.name || (dirname === "" ? basename
+        : (ignore || ["index"]).includes(basename) ? dirname
+        : this.leaf ? dirname // use only dirname if leafmodule
+        : `${dirname}/${basename}`) // attach basename if submodule
     Object.assign(doclet, { kind: "module", name })
 }
 

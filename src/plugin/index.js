@@ -33,10 +33,14 @@ const defineTags = dictionary => {
         mustNotHaveDescription: true,
         mustNotHaveValue: false
     }
-    // define named tag with, onTagged function imported
+    // define named tags with, onTagged function imported
     dictionary.defineTag("submodule", { 
         ...options, 
         onTagged: onTagged.bind(env) 
+    })
+    dictionary.defineTag("leafmodule", {
+        ...options,
+        onTagged: onTagged.bind({ ...env, leaf: true })
     })
 }
 

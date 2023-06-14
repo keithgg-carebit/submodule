@@ -62,6 +62,21 @@ describe("onTagged", () => {
         return name ? { value: { name } } : {}
     }
 
+    // standard case with no plugin configuration in the jsdoc json config file
+    test("standard no config", () => {
+        const env = {
+            pwd: process.cwd(),
+            conf: { source: { include: ["src"] } }
+        }
+        const doclet = { meta: { 
+            path: "src/path/to",
+            filename: "file.js"
+        }}
+        const name = "path/to/file"
+        onTagged.call(env, doclet, getTag())
+        expect(doclet).toEqual(getDoclet(doclet, name))
+    })
+
     // standard case with no resolution to a user declared root module path
     test("standard no resolution", () => {
         const env = defaultEnv
@@ -173,6 +188,19 @@ describe("onTagged", () => {
             filename: "feature.js"
         }}
         name = "B/feature"
+        onTagged.call(env, doclet, getTag())
+        expect(doclet).toEqual(getDoclet(doclet, name))
+    })
+
+    // test file marked as a leafmodule file which should be documented under
+    // the namespace module of the directory
+    test("leaf file", () => {
+        const env = { ...defaultEnv, leaf: true }
+        const doclet = { meta: { 
+            path: "src/path/to",
+            filename: "file.js"
+        }}
+        const name = "path/to"
         onTagged.call(env, doclet, getTag())
         expect(doclet).toEqual(getDoclet(doclet, name))
     })
