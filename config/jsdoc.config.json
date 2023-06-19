@@ -22,8 +22,7 @@
         "recurse": true,
         "readme": "./README.md",
         "template": "node_modules/docdash",
-        "tutorials": "./docs",
-        "sort": true
+        "tutorials": "./docs"
     },
     "plugins": [ 
         "plugins/markdown"

@@ -22,8 +22,7 @@
         "private": true,
         "recurse": true,
         "readme": "sample/README.md",
-        "template": "node_modules/docdash",
-        "sort": true
+        "template": "node_modules/docdash"
     },
     "plugins": [ 
         "plugins/markdown",
