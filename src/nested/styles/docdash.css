@@ -1,0 +1,22 @@
+h1.page-title span:first-of-type {
+    font-style: italic;
+    color: var(--clr-neutral-500, #660066);
+}
+
+nav > div  ul > li:not(.method) {
+    margin-top: 10px;
+}
+
+nav > div ul ul a {
+    border: none;
+}
+
+nav > div ul ul {
+    padding-left: 15px;
+    border-left: 1px solid hsl(207, 10%, 86%); /* change to use var with fallback */
+}
+
+nav > div ul ul a,
+nav > div ul ul a:active {
+    padding-left: 0px;
+}
