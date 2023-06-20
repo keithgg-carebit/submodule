@@ -3,7 +3,7 @@
         "search": true,
         "typedefs": true,
         "collapse": true,
-        "sort": true,
+        "sort": false,
         "sectionOrder": [
             "Tutorials",
             "Classes",
@@ -28,9 +28,6 @@
         "plugins/markdown",
         "."
     ],
-    "markdown": {
-        "hardwrap": true
-    },
     "submodule": {
         "roots": {
             "A": "sample/includeA/moduleA",
