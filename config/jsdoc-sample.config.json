@@ -28,6 +28,10 @@
         "plugins/markdown",
         "."
     ],
+    "markdown": {
+        "hardwrap": false,
+        "idInHeadings": true
+    },
     "submodule": {
         "roots": {
             "A": "sample/includeA/moduleA",

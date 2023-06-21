@@ -27,6 +27,10 @@
     "plugins": [ 
         "plugins/markdown"
     ],
+    "markdown": {
+        "hardwrap": false,
+        "idInHeadings": true
+    },
     "recurseDepth": 10,
     "source": {
         "include": ["src"],
