@@ -32,12 +32,13 @@ import {
 /**
  * Parses existing nav into a nested structure for re-render by nesting modules
  * according to their pathname (i.e. "folder/subdirectory" would be nested 
- * underneath a top level module named "folder")
+ * underneath a top level module named "folder").
  * 
  * Apart from some DOM manipulation which is specific to docdash, much of the 
  * logic below could be shared with other templates when they are added.
  * 
  * @summary Parses existing nav into a nested structure for re-render
+ * @tutorial module-fragments
  * @static
  * @param {HTMLUListElement} navList - Original modules nav list
  * @returns {NestedModule[]}
@@ -77,6 +78,11 @@ const parseModules = navList => {
             if (!inner) {
                 inner = getFragment({ name, link, scopePath })
                 scope.push(inner)
+            }
+            // update file type fragments to module fragments since submodule 
+            // is being added
+            if (inner.type === "file") {
+                Object.assign(inner, { type: "module" })
             }
             scope = inner.children
             scopePath = inner.path
@@ -231,9 +237,12 @@ const getFragment = ({ name, link, scopePath, children = [] }) => {
     const path = `${scopePath}_${name}`
 
     // fragment type; namespace-module for nested modules which do not have any
-    // document members in the code
+    // document members in the code - modules (i.e. modules containing either
+    // methods and optionally other nested modules are initialized to "file"
+    // implying that they contain only methods - fragment must be updated to
+    // "module" type if submodules are added)
     const type = methodRegex.test(href) ? "method"
-        : children.length ? "module" 
+        : children.length ? "file" 
         : "namespace-module"
 
     // fragment hierarchy corresponds if fragment is a child, sibling etc.

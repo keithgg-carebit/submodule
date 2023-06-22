@@ -21,6 +21,7 @@ concerning these resources/assets. */
     --icon-folder-open: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M21 5h-8.8L11 3H4L2.8 5H1v16h20l2.902-12H21zM2 6h1.366l1.2-2h5.868l1.2 2H20v3h-5.6l-2 2H4.35L2 18.015zm20.632 4l-2.42 10H2.39l2.68-8h7.744l2-2z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     --icon-folder-closed: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M2.8 5H1v16h22V5H12.2L11 3H4zM22 20H2V9h20zM10.434 4l1.2 2H22v2H2V6h1.366l1.2-2z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     --icon-folder-namespace: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M2 19V8h20v7.466l1 1.01V4H12.2L11 2H4L2.8 4H1v16h9v-1zM2 5h1.366l1.2-2h5.868l1.2 2H22v2H2zm21.182 14.5l-3.828 3.853-.709-.706 2.647-2.665H12v-1h9.257l-2.611-2.63.709-.704z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
+    --icon-file: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M3 23h18V6.709L15.29 1H3zM15 2h.2L20 6.8V7h-5zM4 2h10v6h6v14H4zm9.13 9.044l.938.35-3.199 8.583-.937-.35zm2.224 1.603l2.853 2.853-2.854 2.854-.707-.707 2.147-2.147-2.146-2.146zm-6 .707L7.207 15.5l2.146 2.146-.707.707L5.793 15.5l2.854-2.854z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E")
 }
 
 /* grey out dirname (first span) of nested title heading */
@@ -45,7 +46,7 @@ li > a::before {
     padding-right: 0.3rem;
 }
 
-li.selected > a::before {
+li.selected:not(.file) > a::before {
     content: var(--icon-folder-open);
 }
 
@@ -59,6 +60,12 @@ li.module.parent > a::before,
 li.module.child > a::before, 
 li.module.sibling > a::before {
     content: var(--icon-folder-closed);
+}
+
+li.file.selected > a::before,
+li.file.child > a::before,
+li.file.sibling > a::before {
+    content: var(--icon-file);
 }
 
 /* style scope title */
