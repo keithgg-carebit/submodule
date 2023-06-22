@@ -1,22 +1,30 @@
-h1.page-title span:first-of-type {
-    font-style: italic;
-    color: var(--clr-neutral-500, #660066);
-}
+/* 
+Copyright (c) 2022 James Reid. All rights reserved.
+This source code file is licensed under the terms of the MIT license, a copy
+of which may be found in the LICENSE.md file in the root of this repository.  
+
+For a template copy of the license see one of the following 3rd party sites:
+    - <https://opensource.org/licenses/MIT>
+    - <https://choosealicense.com/licenses/mit>
+    - <https://spdx.org/licenses/MIT> 
+*/
+
+/* Rectify some spacing from default docdash template in order to play nice with
+the added folder icons etc. All colors copied from existing colors in docdash 
+css -> see the following link for docdash css:
+    - https://github.com/clenemt/docdash/blob/master/static/styles/jsdoc.css */
 
 nav > div  ul > li:not(.method) {
-    margin-top: 10px;
-}
-
-nav > div ul ul a {
-    border: none;
+    margin-top: 0.65rem;
 }
 
 nav > div ul ul {
-    padding-left: 15px;
-    border-left: 1px solid hsl(207, 10%, 86%); /* change to use var with fallback */
+    border-left: 1px solid #d8dcdf;
+    padding-left: 1rem;
 }
 
 nav > div ul ul a,
 nav > div ul ul a:active {
-    padding-left: 0px;
+    border: none;
+    padding-left: 0;
 }

@@ -1,16 +1,48 @@
+/* 
+Copyright (c) 2022 James Reid. All rights reserved.
+This source code file is licensed under the terms of the MIT license, a copy
+of which may be found in the LICENSE.md file in the root of this repository.  
+
+For a template copy of the license see one of the following 3rd party sites:
+    - <https://opensource.org/licenses/MIT>
+    - <https://choosealicense.com/licenses/mit>
+    - <https://spdx.org/licenses/MIT> 
+*/
+
+/* Add folder icons for modules, style nested title, and add styles to different
+method types etc. All colors copied from existing colors in docdash css -> see 
+the following link for docdash css:
+    - https://github.com/clenemt/docdash/blob/master/static/styles/jsdoc.css */
+
+/* Declare svg paths in data urls for folder icons etc. All path image data urls
+generated using web util. Please see repository README.md for attributions
+concerning these resources/assets. */
 :root {
     --icon-folder-open: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M21 5h-8.8L11 3H4L2.8 5H1v16h20l2.902-12H21zM2 6h1.366l1.2-2h5.868l1.2 2H20v3h-5.6l-2 2H4.35L2 18.015zm20.632 4l-2.42 10H2.39l2.68-8h7.744l2-2z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     --icon-folder-closed: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M2.8 5H1v16h22V5H12.2L11 3H4zM22 20H2V9h20zM10.434 4l1.2 2H22v2H2V6h1.366l1.2-2z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
     --icon-folder-namespace: url("data:image/svg+xml,%3Csvg width='10' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg' fill='%23000000'%3E%3Cg id='SVGRepo_bgCarrier' stroke-width='0'%3E%3C/g%3E%3Cg id='SVGRepo_tracerCarrier' stroke-linecap='round' stroke-linejoin='round'%3E%3C/g%3E%3Cg id='SVGRepo_iconCarrier'%3E%3Cpath d='M2 19V8h20v7.466l1 1.01V4H12.2L11 2H4L2.8 4H1v16h9v-1zM2 5h1.366l1.2-2h5.868l1.2 2H22v2H2zm21.182 14.5l-3.828 3.853-.709-.706 2.647-2.665H12v-1h9.257l-2.611-2.63.709-.704z'%3E%3C/path%3E%3Cpath fill='none' d='M0 0h24v24H0z'%3E%3C/path%3E%3C/g%3E%3C/svg%3E");
 }
 
+/* grey out dirname (first span) of nested title heading */
+h1.nested-title span:first-of-type {
+    color: #98999a;
+    font-style: italic;
+}
+
+/* style list items appropriately depending on their class state */
 li.hidden {
     display: none;
 }
 
 li.selected > a {
     text-decoration: underline;
-    color: var(--clr-primary-200, #606);
+    color: #660066;
+}
+
+/* add padded pseudo element to module list items with an appropriate file icon
+reflecting state and current position in nested nav */
+li > a::before {
+    padding-right: 0.3rem;
 }
 
 li.selected > a::before {
@@ -29,23 +61,13 @@ li.module.sibling > a::before {
     content: var(--icon-folder-closed);
 }
 
-li > a::before {
-    padding-right: 5px;
-}
-
-li li.module,
-li li.namespace-module {
-    position: relative;
-    right: 5px;
-}
-
-li.method-title {
+/* style scope title */
+li.method-scope-title {
     font-size: 0.75em;
     font-style: italic;
-    position: relative;
-    right: 5px;
 }
 
+/* add pseudo element refltecting access of each method */
 li.access-public > a::after,
 li.access-package > a::after,
 li.access-protected > a::after,
@@ -54,7 +76,7 @@ li.access-private > a::after {
     font-size: 0.75em;
     font-style: italic;
     font-weight: normal;
-    padding-left: 5px;
+    padding-left: 0.3rem;
 }
 
 li.access-public > a::after {

@@ -4,9 +4,9 @@
 // of which may be found in the LICENSE.md file in the root of this repository.  
 // 
 // For a template copy of the license see one of the following 3rd party sites:
-//      * <https://opensource.org/licenses/MIT>
-//      * <https://choosealicense.com/licenses/mit>
-//      * <https://spdx.org/licenses/MIT>
+//      - <https://opensource.org/licenses/MIT>
+//      - <https://choosealicense.com/licenses/mit>
+//      - <https://spdx.org/licenses/MIT>
 
 /**
  * @file Method for parsing modules from the docdash DOM into a nested module
@@ -38,6 +38,7 @@ import {
  * logic below could be shared with other templates when they are added.
  * 
  * @summary Parses existing nav into a nested structure for re-render
+ * @static
  * @param {HTMLUListElement} navList - Original modules nav list
  * @returns {NestedModule[]}
  */

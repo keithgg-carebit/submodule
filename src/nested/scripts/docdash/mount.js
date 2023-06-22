@@ -4,9 +4,9 @@
 // of which may be found in the LICENSE.md file in the root of this repository.  
 // 
 // For a template copy of the license see one of the following 3rd party sites:
-//      * <https://opensource.org/licenses/MIT>
-//      * <https://choosealicense.com/licenses/mit>
-//      * <https://spdx.org/licenses/MIT>
+//      - <https://opensource.org/licenses/MIT>
+//      - <https://choosealicense.com/licenses/mit>
+//      - <https://spdx.org/licenses/MIT>
 
 /**
  * @file Methods for mounting elements in page which need to be re-rendered
@@ -23,6 +23,7 @@
  * for rendering nested modules to. Returns both original nav list and new div.
  * 
  * @summary Mounts module nav list and optionally replaces it with div container
+ * @static
  * @param {boolean} unmountExisting - Flag indicating if the existing module
  *      nav element should be replaced with the new nested module nav element
  * @returns {{navList: HTMLUListElement, moduleNavContainer: HTMLDivElement}}
@@ -51,6 +52,7 @@ const mountNav = (unmountExisting = true) => {
  * Locates and returns page H1 title in main div of page
  * 
  * @summary Mounts page title
+ * @static
  * @returns {HTMLHeadingElement}
  */
 const mountTitle = () => {
