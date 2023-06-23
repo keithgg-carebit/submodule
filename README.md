@@ -117,27 +117,41 @@ The `@leafmodule` tag can be used in exactly the same manner as the standard `@s
 
 ### Configuration
 
-You may configure the submodule plugin in your jsdoc configuration file. Please see below for a sample configuration of the submodule plugin and the deafault configuration options written alongside in comments (please note that the following is only a fragment of a config file).
+You may configure the submodule plugin in your jsdoc config file. Please consult the table below for the available config options and their uses. See [default](#default-configuration) and [sample](#sample-configuration) configuration snippets for more information.
+
+| Option             | Default     | Description                                                  |
+| ------------------ | ----------- | ------------------------------------------------------------ |
+| `submodule.ignore` | `["index"]` | `submodule.ignore` is a string array of file basenames to be ignored by the submodule plugin (i.e. the `@submodule` tag behaves identically to the `@leafmodule` tag in files with names listed in this array) . For example with the default ignore array, a tagged file with path `path/to/folder/index.js` will be mapped to `path/to/folder` as the calculated module name instead of `path/to/folder/index`. |
+| `submodule.roots`  | `{}`        | `submodule.roots` is an object of string key-value pairs which allow you to rename certain paths within your included src folder(s). This will usually be used to shorten a path either for the purpose of reducing time to navigate to that submodule, or with the purpose of making that submodule a top-level module (for example important business logic nested within multiple folders which should be displayed at top level). |
+
+#### Default Configuration
+
+Please see below for the the default configuration of the submodule plugin (please note that the following is only a fragment of a config file). Obviously if the default configuration matches your requirements, it  is not necessary to add this object fragment to your config file.
 
 ```json
 {	
     "submodule": {
-        "ignore": ["file", "basenames", "to", "ignore"], 	// default ["index"]
-        "roots": { 											// default {}
+        "ignore": ["index"],
+        "roots": {}	
+    }	
+}
+```
+
+#### Sample Configuration
+
+Please see below for the a sample configuration of the submodule plugin (please note that the following is only a fragment of a config file).
+
+```json
+{	
+    "submodule": {
+        "ignore": ["file", "basenames", "to", "ignore"],
+        "roots": {
             "this/path": "turns/into/this/path",
             "normally/long/paths/mapped/to": "shorter/paths"
         }	
     }	
 }
 ```
-
-#### Ignore
-
-String array of file basenames to be ignored by the submodule plugin (i.e. the `@submodule` tag behaves identically to the `@leafmodule` tag in files with names listed in this array) . For example with the default ignore array, a tagged file with path `path/to/folder/index.js` will be mapped to `path/to/folder` as the calculated module name instead of `path/to/folder/index`.
-
-#### Roots
-
-Object of string key-value pairs which allow you to rename certain paths within your included src folder(s). This will usually be used to shorten a path either for the purpose of reducing time to navigate to that submodule, or with the purpose of making that submodule a top-level module (for example important business logic nested within multiple folders which should be displayed at top level).
 
 ### Template Scripts
 
@@ -147,7 +161,7 @@ Having installed submodule as a dev dependency in your project, you now have acc
 
 #### Docdash
 
-The [docdash](https://github.com/clenemt/docdash) configuration offers an easy way to inject 3rd party scripts (js and or css files) into the generated html from local file copied into the generated documentation output using the `templates.default.staticFiles.include` array in jsdoc config. Please see below for the appropriate fragment of the jsdoc config file required to inject the submodule docdash re-render script into the generated output.
+The [docdash](https://github.com/clenemt/docdash) configuration offers an easy way to inject 3rd party scripts (js and or css files) into the generated html from local file copied into the generated documentation output using the `templates.default.staticFiles.include` array in jsdoc config. Please see below for the appropriate fragment of the jsdoc config file required to inject the submodule docdash re-render script into the generated output. Please note that the sourcemap file is not required, although may be included for the purposes of debugging etc.
 
 ```json
 {
@@ -159,7 +173,7 @@ The [docdash](https://github.com/clenemt/docdash) configuration offers an easy w
             "staticFiles": {
                 "include": [
                     "node_modules/@13ms/submodule/dist/docdash.min.js",
-                    "node_modules/@13ms/submodule/dist/docdash.min.js.map"	// optional
+                    "node_modules/@13ms/submodule/dist/docdash.min.js.map"
                 ]
             }
         }
