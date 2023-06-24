@@ -40,7 +40,7 @@ const config = [
     },
     // rollup config object for docdash template pluign
     {
-        input: "src/nested/scripts/docdash/index.js",
+        input: "src/web/scripts/docdash/index.js",
         output: [
             { file: "dist/docdash.min.js", format: "iife", sourcemap: true }
         ],

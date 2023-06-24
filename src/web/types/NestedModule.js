@@ -36,7 +36,8 @@
  *      Relative path relation to current selected submodule (i.e. child, 
  *      sibling, parent etc.), used to determine how this submodule should be 
  *      rendered (hidden, nested right etc.)
- * @property {string} path - Dirname of module or member etc.
+ * @property {string} path - Pathname of module or member etc. (dirname 
+ *      concatenated with basename if basename exists)
  * @property {NestedModule[]} children - Array of submodules which are children
  *      of this given submodule
  * @property {string} [access] - Access of member if it is a method

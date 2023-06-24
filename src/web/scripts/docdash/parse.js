@@ -72,11 +72,11 @@ const parseModules = navList => {
         // isolate "first-parent" scope of childNode within moduleTree - if the
         // scope does not yet exist, add it on the fly 
         let scope = moduleTree
-        let scopePath = ""
+        let dir = ""
         for (const name of init) {
             let inner = scope.find(obj => obj.name === name)
             if (!inner) {
-                inner = getFragment({ name, link, scopePath })
+                inner = getFragment({ name, link, dir })
                 scope.push(inner)
             }
             // update file type fragments to module fragments since submodule 
@@ -85,7 +85,7 @@ const parseModules = navList => {
                 Object.assign(inner, { type: "module" })
             }
             scope = inner.children
-            scopePath = inner.path
+            dir = inner.path
         }
 
         // look for existing module fragment with the same final basename - this
@@ -104,7 +104,7 @@ const parseModules = navList => {
                 inner.children.push(getFragment({ 
                     name: link.innerHTML, 
                     link, 
-                    scopePath: inner.path
+                    dir: inner.path
                 }))
             }
         }
@@ -116,10 +116,10 @@ const parseModules = navList => {
                 children.push(getFragment({ 
                     name: link.innerHTML, 
                     link, 
-                    scopePath: `${scopePath}_${last}`
+                    dir: `${dir}_${last}`
                 }))
             }
-            scope.push(getFragment({ name: last, link, scopePath, children }))
+            scope.push(getFragment({ name: last, link, dir, children }))
         }        
     }
 
@@ -227,14 +227,14 @@ const getAlphabeticalPriority = (optA, optB) => {
  * @param {object} argObj 
  * @param {string} argObj.name - basename of fragment
  * @param {HTMLLinkElement} argObj.link - link element from original module nav
- * @param {string} argObj.scopePath - dirname of fragment
+ * @param {string} argObj.dir - dirname of fragment relative to src directory
  * @param {NestedModule[]} [argObj.children=[]] - existing children
  * @returns {NestedModule}
  */
-const getFragment = ({ name, link, scopePath, children = [] }) => {
+const getFragment = ({ name, link, dir, children = [] }) => {
     // fetch href from the html link element and calculate full path of fragment
     const { href } = link
-    const path = `${scopePath}_${name}`
+    const path = `${dir}_${name}`
 
     // fragment type; namespace-module for nested modules which do not have any
     // document members in the code - modules (i.e. modules containing either
