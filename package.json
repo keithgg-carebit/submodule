@@ -1,6 +1,6 @@
 {
     "name": "@13ms/submodule",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "A jsdoc plugin for automatically creating nested submodules according to file path",
     "type": "module",
     "main": "dist/bundle.min.cjs",

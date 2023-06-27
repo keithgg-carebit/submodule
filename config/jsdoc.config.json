@@ -47,7 +47,7 @@
         "default": {
             "staticFiles": {
                 "include": [
-                    "assets/favicon.ico"
+                    "assets"
                 ]
             }
         }
