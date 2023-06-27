@@ -15,7 +15,7 @@
             "Interfaces",
             "Global"
         ],
-        "scripts": [ "docdash.min.js" ]
+        "scripts": [ "submodule-docdash.min.js" ]
     },
     "opts": {
         "destination": "./jsdoc-sample/",
@@ -55,8 +55,8 @@
         "default": {
             "staticFiles": {
                 "include": [
-                    "dist/docdash.min.js",
-                    "dist/docdash.min.js.map",
+                    "dist/submodule-docdash.min.js",
+                    "dist/submodule-docdash.min.js.map",
                     "assets/favicon.ico"
                 ]
             }
