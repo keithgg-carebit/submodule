@@ -131,7 +131,7 @@ const parseModules = navList => {
 
 /**
  * Recursively sort nested module tree **in place** such that all nested modules
- * have been sorted - {@link module:docdash/parse~getPriority see here} for 
+ * have been sorted - see [here]{@link module:docdash/parse~getPriority} for 
  * function used in sorting.
  * 
  * @summary Recursively sort nested module tree
@@ -151,10 +151,10 @@ const sortModuleTree = moduleTree => {
  * in the nested module nav. Modules are ordered as follows with priority
  * decreasing down the list (i.e. first by type, last by alphabetical), please 
  * refer do documentation of each priority function for further details:
- *  1. Order by type - {@link module:docdash/parse~getTypePriority getTypePriority}
- *  2. Order by method signature scope - {@link module:docdash/parse~getSignaturePriority getSignaturePriority}
- *  3. Order by method signature access - {@link module:docdash/parse~getSignaturePriority getSignaturePriority}
- *  4. Order in ascending alphabetical order - {@link module:docdash/parse~getAlphabeticalPriority getAlphabeticalPriority}
+ *  1. Order by type - [getTypePriority]{@link module:docdash/parse~getTypePriority}
+ *  2. Order by method signature scope - [getSignaturePriority]{@link module:docdash/parse~getSignaturePriority}
+ *  3. Order by method signature access - [getSignaturePriority]{@link module:docdash/parse~getSignaturePriority}
+ *  4. Order in ascending alphabetical order - [getAlphabeticalPriority]{@link module:docdash/parse~getAlphabeticalPriority}
  * 
  * @summary Get absolute priority between two nested modules
  * @param {NestedModule} optA - First nested module
@@ -188,7 +188,7 @@ const getTypePriority = (optA, optB) => {
 /**
  * Get signature priority (either access or scope priority as specified in 
  * arguments), ordering from least to most "restrictive" as listed by jsdoc, a
- * summary of which may be found {@link https://github.com/blameitonyourisp/funky#standard here}.
+ * summary of which may be found [here]{@link https://github.com/blameitonyourisp/funky#standard}.
  * 
  * @summary Get signature priority between two nested modules
  * @param {NestedModule} optA - First nested module 

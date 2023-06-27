@@ -64,9 +64,9 @@ const renderNestedModules = (moduleNavContainer, moduleTree) => {
         listItem.dataset.type = fragment.type
         listItem.classList.add(...(() => {
             const { type, hierarchy, access, scope } = fragment
-            const classList = [type, hierarchy]
+            const classList = /** @type {string[]} */ ([type, hierarchy])
             if (access && scope) { 
-                classList.push(`access-${access}`, `scope-${scope}`) 
+                classList.push(`access-${access}`, `scope-${scope}`)
             }
             return classList
         })())
