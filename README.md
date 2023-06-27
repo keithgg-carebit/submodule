@@ -231,6 +231,7 @@ Submodule currently does not support a large number of jsdoc templates, however 
 
 - Support for nested module re-rendering in more 3rd party jsdoc template plugins
 - Allow submodule plugin to observe type of tag in order to determine if basename should be ignored or not (i.e. replace the `@leafmodule` tag with a boolean flag in the type field of the `@submodule` tag)
+- Add script for injecting bundled template modification scripts into the html file outputted by jsdoc when using templates that do not support 3rd party script/stylesheet injection out of the box
 
 ## Attributions
 
