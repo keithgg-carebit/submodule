@@ -34,18 +34,16 @@ const config = [
             "jsdoc/env"
         ],
         plugins: [
-            // @ts-expect-error
             terser({ maxWorkers: 6 })
         ]
     },
-    // rollup config object for docdash template pluign
+    // rollup config object for docdash template plugin
     {
         input: "src/web/scripts/docdash/index.js",
         output: [
             { file: "dist/docdash.min.js", format: "iife", sourcemap: true }
         ],
         plugins: [
-            // @ts-expect-error
             terser({ maxWorkers: 6 }),
             postcss({ plugins: [] })
         ]

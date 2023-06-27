@@ -56,7 +56,8 @@
             "staticFiles": {
                 "include": [
                     "dist/docdash.min.js",
-                    "dist/docdash.min.js.map"
+                    "dist/docdash.min.js.map",
+                    "assets/favicon.ico"
                 ]
             }
         }
