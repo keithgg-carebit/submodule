@@ -155,7 +155,7 @@ Please see below for the a sample configuration of the submodule plugin (please 
 
 ### Template Scripts
 
-Having installed submodule as a dev dependency in your project, you now have access to some template modification scripts which update existing jsdoc templates by re-rendering the module section of the nav in the generated documentation into a nested tree structure reflective of how the modules appear in the src directory. Please see the following list for currently supported jsdoc templates and instructions on how to configure each one:
+Having installed submodule as a dev dependency in your project, you now have access to some template modification scripts which update existing jsdoc templates by re-rendering the module section of the nav in the generated documentation into a nested tree structure reflective of how the modules appear in the src directory. The bundled file for a given template will be at `dist/submodule-<template-name>.min.js` or browse [dist directory here](https://github.com/blameitonyourisp/submodule/tree/master/dist) on github. Please see the following list for currently supported jsdoc templates and instructions on how to configure each one:
 
 - [Docdash](#docdash)
 
@@ -166,14 +166,14 @@ The [docdash](https://github.com/clenemt/docdash) configuration offers an easy w
 ```json
 {
     "docdash": {
-        "scripts": [ "docdash.min.js" ]
+        "scripts": [ "submodule-docdash.min.js" ]
     },
     "templates": {
         "default": {
             "staticFiles": {
                 "include": [
-                    "node_modules/@13ms/submodule/dist/docdash.min.js",
-                    "node_modules/@13ms/submodule/dist/docdash.min.js.map"
+                    "node_modules/@13ms/submodule/dist/submodule-docdash.min.js",
+                    "node_modules/@13ms/submodule/dist/submodule-docdash.min.js.map"
                 ]
             }
         }

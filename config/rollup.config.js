@@ -41,7 +41,11 @@ const config = [
     {
         input: "src/web/scripts/docdash/index.js",
         output: [
-            { file: "dist/docdash.min.js", format: "iife", sourcemap: true }
+            { 
+                file: "dist/submodule-docdash.min.js", 
+                format: "iife", 
+                sourcemap: true 
+            }
         ],
         plugins: [
             terser({ maxWorkers: 6 }),

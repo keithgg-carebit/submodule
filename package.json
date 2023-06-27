@@ -1,11 +1,11 @@
 {
     "name": "@13ms/submodule",
-    "version": "1.0.1",
+    "version": "1.1.0",
     "description": "A jsdoc plugin for automatically creating nested submodules according to file path",
     "type": "module",
     "main": "dist/bundle.min.cjs",
     "scripts": {
-        "build": "npm run test && npm run tokei && rollup --config ./config/rollup.config.js",
+        "build": "npm run test && rollup --config ./config/rollup.config.js && npm run tokei",
         "build-dev": "rollup --config ./config/rollup.config.js",
         "docs": "jsdoc -c ./config/jsdoc.config.json",
         "docs-sample": "jsdoc -c ./config/jsdoc-sample.config.json",
