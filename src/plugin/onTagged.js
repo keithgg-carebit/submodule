@@ -91,7 +91,12 @@ function onTagged(doclet, tag) {
         : (ignore || ["index"]).includes(basename) ? dirname
         : this.leaf ? dirname // use only dirname if leafmodule
         : `${dirname}/${basename}`) // attach basename if submodule
-    Object.assign(doclet, { kind: "module", name })
+
+    // if file is leafmodule tagged, set environment variable in order to tag 
+    // rest of file doclets with correct doclet.memberof tag, otherwise mark
+    // doclet (file) as module file
+    if (this.leaf) { process.env.SUBMODULE = name }
+    else { Object.assign(doclet, { kind: "module", name }) }
 }
 
 // @exports

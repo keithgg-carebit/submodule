@@ -193,15 +193,21 @@ describe("onTagged", () => {
     })
 
     // test file marked as a leafmodule file which should be documented under
-    // the namespace module of the directory
-    test("leaf file", () => {
+    // the namespace module of the directory, and should set the "SUBMODULE"
+    // environment variable
+    test("leafmodule", () => {
         const env = { ...defaultEnv, leaf: true }
         const doclet = { meta: { 
             path: "src/path/to",
             filename: "file.js"
         }}
+        // case A testing leafmodule in standard configuration
         const name = "path/to"
         onTagged.call(env, doclet, getTag())
-        expect(doclet).toEqual(getDoclet(doclet, name))
+        expect(process.env.SUBMODULE).toBe(name)
+        // case B testing leafmodule with a custom module nam
+        const customName = "custom/leafmodule/name"
+        onTagged.call(env, doclet, getTag(customName))
+        expect(process.env.SUBMODULE).toBe(customName)
     })
 })

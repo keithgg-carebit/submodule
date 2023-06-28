@@ -4,7 +4,7 @@
 
 # Submodule
 
-A jsdoc plugin for quickly creating  nested modules without explicitly having to write a module name such as `path/to/file` reflective of the location of the module in the src directory.
+A jsdoc plugin for quickly creating  nested modules or modules declared over many files without explicitly having to write a module name such as `path/to/file` reflective of the location of the module in the src directory, and without causing duplicate doclets as a result of having multiple files tagged with the same module name.
 
 ![](https://img.shields.io/github/license/blameitonyourisp/submodule?style=for-the-badge&labelColor=181b1a&color=779966) ![](https://img.shields.io/github/package-json/v/blameitonyourisp/submodule/master?style=for-the-badge&labelColor=181b1a&color=779966) 
 
@@ -101,17 +101,32 @@ If a name is provided, then the `@submodule` behaviour of calculating a module p
 
 ### Leafmodule Tag
 
-The `@leafmodule` tag can be used in exactly the same manner as the standard `@submodule` tag, however when calculating the module name for the file, the plugin will ignore the basename of the file. This may be useful if you wish to create modules that are declared over multiple files with less nesting. The `@submodule` tag is equivalent to the `@leafmodule` tag in files whose name is listed in the ignore array of the [submodule configuration](#configuration).
+The `@leafmodule` tag offers a way to split modules over multiple files with reduced nesting by adding `@memberof` tags to all jsdoc comments in a file based on the module name calculated by submodule. The `@leafmodule` tag will ignore single line jsdoc comments such as type annotations, and jsdoc comments with an existing memberof tag, allowing you to use override module membership with an explicit comment `@memberof` tag as is already possible with the vanilla jsdoc `@module` tag. The `@leafmodule` tag can be used in exactly the same manner as the standard `@submodule` tag; the tag may be used with or without a custom name, however when using `@leafmodule` without a name, the calculated module name will ignore the basename of the file. This may be useful if you wish to create modules that are declared over multiple files with less nesting, and with no duplication of methods in the generated documentation due to using the same `@module` tag at the top of two or more files as discussed in [jsdoc issue #515](https://github.com/jsdoc/jsdoc/issues/515) and [jsdoc issue #1002](https://github.com/jsdoc/jsdoc/issues/1002). 
 
 ```javascript
 /**
  * The leafmodule tag causes submodule to ignore the basename of the file when 
- * calculating the module name. For example, the following two tags may be 
- * considered equivalent in a file with path "src/path/to/file.js" where the 
- * jsdoc config takes "src" as an include directory.
+ * calculating the module name. Calculated module name is then added as jsdoc
+ * memberof tag to every jsdoc comment in the file, excluding single line jsdoc
+ * comments such as type annotations, and jsdoc comments with an existing 
+ * memberof tag (i.e. as with the vanilla jsdoc module tag, it is possible to 
+ * override the set module with a memberof tag on the desired comment). For 
+ * example, in a file with path "src/path/to/file.js" where the jsdoc config 
+ * takes "src" as an include directory, the leafmodule tag would be equivalent
+ * to adding the following memberof tag to all jsdoc comments in that file.
  * 
  * @leafmodule
- * @module path/to
+ * @memberof module:path/to
+ */
+
+/**
+ * Or, the name field of the leafmodule tag allows you to specify which module
+ * name is used to tag each doclet with the memberof tag, therefore the following
+ * leafmodule tag is equivalent to adding the following memberof tag to every
+ * jsdoc comment in a given file.
+ *
+ * @leafmodule custom/name
+ * @memberof module:custom/name
  */
 ```
 
