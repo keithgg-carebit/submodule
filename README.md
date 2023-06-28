@@ -4,7 +4,7 @@
 
 # Submodule
 
-A jsdoc plugin for quickly creating  nested modules or modules declared over many files without explicitly having to write a module name such as `path/to/file` reflective of the location of the module in the src directory, and without causing duplicate doclets as a result of having multiple files tagged with the same module name.
+A jsdoc plugin for quickly creating  nested modules or modules declared over many files without explicitly having to write a module name such as `path/to/file` reflective of the location of the module in the src directory, and without causing duplicate doclets as a result of having multiple files tagged with the same module name. This repository is hosted on [github](https://github.com), if you're already reading this there, then great! Otherwise browse the repository [here](https://github.com/blameitonyourisp/submodule).
 
 ![](https://img.shields.io/github/license/blameitonyourisp/submodule?style=for-the-badge&labelColor=181b1a&color=779966) ![](https://img.shields.io/github/package-json/v/blameitonyourisp/submodule/master?style=for-the-badge&labelColor=181b1a&color=779966) 
 
@@ -48,7 +48,7 @@ Submodule is a simple jsdoc plugin which adds the `@submodule` tag which will la
 
 ## Installation
 
-If you are not already using jsdoc in your project(s) then go ahead and checkout the [github repository for jsdoc](https://github.com/jsdoc/jsdoc), otherwise continue with installing this plugin in a package that already has jsdoc installed and configured.
+If you are not already using jsdoc in your project(s) then go ahead and checkout the [github repository for jsdoc](https://github.com/jsdoc/jsdoc), otherwise continue with installing this plugin in a package that already has jsdoc installed and configured. This plugin is available from [npm](https://www.npmjs.com), to view there please see the [package page](https://www.npmjs.com/package/@13ms/submodule).
 
 ```bash
 # install the submodule plugin (recommended as a dev dependency)
